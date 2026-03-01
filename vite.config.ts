@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
-import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
 // =============================================================================
 // Debug Collector - Vite Plugin
@@ -150,7 +149,7 @@ function vitePluginDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginDebugCollector()];
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginDebugCollector()];
 
 export default defineConfig({
   plugins,
