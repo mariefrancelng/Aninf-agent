@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,22 +8,11 @@ import { ChevronLeft, ChevronRight, Download, Calendar, Home } from "lucide-reac
 import { useLocation } from "wouter";
 import { format, startOfWeek, endOfWeek, subWeeks, addWeeks } from "date-fns";
 import { fr } from "date-fns/locale";
-import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
 
 export default function WeeklySummaries() {
-  const { isAuthenticated } = useAuth();
-  const [isDemoMode] = useState(false); // OAuth enabled
-
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isDemoMode && !isAuthenticated) {
-      const loginUrl = getLoginUrl();
-      window.location.href = loginUrl;
-    }
-  }, [isAuthenticated, isDemoMode]);
   const [, setLocation] = useLocation();
-  const isAuthorized = isDemoMode || isAuthenticated;
+  // L'authentification est gérée par DashboardLayout
+  const isAuthorized = true;
   const [currentWeekStart, setCurrentWeekStart] = useState(() => {
     const today = new Date();
     return startOfWeek(today, { weekStartsOn: 1 }); // Monday

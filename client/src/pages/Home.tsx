@@ -7,28 +7,15 @@ import { useLocation } from "wouter";
 import { formatDistanceToNow } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Streamdown } from "streamdown";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
-
-// Mock user for demo purposes
-const DEMO_USER_ID = 1;
 
 export default function Home() {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user } = useAuth();
   const [, setLocation] = useLocation();
-  const [isDemoMode, setIsDemoMode] = useState(false); // OAuth enabled
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isDemoMode && !isAuthenticated) {
-      const loginUrl = getLoginUrl();
-      window.location.href = loginUrl;
-    }
-  }, [isAuthenticated, isDemoMode]);
-
-  // Use demo mode or authenticated user
-  const isAuthorized = isDemoMode || isAuthenticated;
+  // L'authentification est gérée par DashboardLayout — user est toujours défini ici
+  const isAuthorized = Boolean(user);
 
   // Fetch surveillance configuration
   const configQuery = trpc.surveillance.getConfig.useQuery(undefined, {

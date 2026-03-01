@@ -5,29 +5,17 @@ import { Label } from "@/components/ui/label";
 import { Loader2, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useLocation } from "wouter";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
-import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
 
 export default function Settings() {
-  const { isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
   const [hour, setHour] = useState("09");
   const [minute, setMinute] = useState("00");
   const [showSuccess, setShowSuccess] = useState(false);
-  const [isDemoMode] = useState(false); // OAuth enabled
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isDemoMode && !isAuthenticated) {
-      const loginUrl = getLoginUrl();
-      window.location.href = loginUrl;
-    }
-  }, [isAuthenticated, isDemoMode]);
-
-  // Fetch current configuration
-  const isAuthorized = isDemoMode || isAuthenticated;
+  // L'authentification est gérée par DashboardLayout
+  const isAuthorized = true;
   const configQuery = trpc.surveillance.getConfig.useQuery(undefined, {
     enabled: isAuthorized,
   });
