@@ -1,6 +1,5 @@
 export const ENV = {
-  // Auth
-  appId: process.env.VITE_APP_ID ?? "",
+  // Auth (session JWT)
   cookieSecret: process.env.JWT_SECRET ?? "",
   ownerOpenId: process.env.OWNER_OPEN_ID ?? "",
   // Firebase Admin
