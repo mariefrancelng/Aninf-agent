@@ -213,10 +213,13 @@ const resolveApiUrl = () => {
   if (!ENV.forgeApiUrl || ENV.forgeApiUrl.trim().length === 0) {
     throw new Error(
       "BUILT_IN_FORGE_API_URL n'est pas configurée. " +
-      "Ajoutez cette variable d'environnement sur Render (ex: https://api.openai.com)."
+      "Valeur attendue : https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
     );
   }
-  return `${ENV.forgeApiUrl.replace(/\/$/, "")}/v1/chat/completions`;
+  // Accepte soit l'URL complète de l'endpoint, soit une URL de base (on ajoute /v1/chat/completions)
+  const url = ENV.forgeApiUrl.replace(/\/$/, "");
+  if (url.endsWith("chat/completions")) return url;
+  return `${url}/v1/chat/completions`;
 };
 
 const assertApiKey = () => {
