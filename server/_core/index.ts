@@ -87,8 +87,9 @@ async function startServer() {
 
       res.json({ success: true });
     } catch (error) {
-      console.error("[Firebase Auth] Erreur de vérification du token:", error);
-      res.status(401).json({ error: "Token Firebase invalide" });
+      const detail = error instanceof Error ? error.message : String(error);
+      console.error("[Firebase Auth] Erreur de vérification du token:", detail);
+      res.status(401).json({ error: `Token Firebase invalide: ${detail}` });
     }
   });
 

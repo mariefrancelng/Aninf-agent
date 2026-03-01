@@ -256,7 +256,8 @@ function FirebaseLoginScreen() {
       window.location.reload();
     } catch (err) {
       console.error("[Auth] Échec de la connexion Google:", err);
-      setError("La connexion a échoué. Veuillez réessayer.");
+      const detail = err instanceof Error ? err.message : String(err);
+      setError(`La connexion a échoué: ${detail}`);
     } finally {
       setLoading(false);
     }

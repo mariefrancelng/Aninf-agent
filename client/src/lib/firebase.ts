@@ -30,7 +30,13 @@ export async function signInWithGoogle(): Promise<void> {
   });
 
   if (!response.ok) {
-    throw new Error("Échec de la connexion au serveur");
+    let body = "";
+    try {
+      body = await response.text();
+    } catch {
+      // ignore
+    }
+    throw new Error(`Échec serveur (${response.status}): ${body || "(pas de réponse)"}`);
   }
 }
 
