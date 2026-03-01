@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1772224695485,
+      "tag": "0000_odd_pet_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1772225447953,
+      "tag": "0001_secret_mephisto",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1772276590436,
+      "tag": "0002_perpetual_eternals",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1772313890419,
+      "tag": "0003_groovy_justin_hammer",
+      "breakpoints": true
+    }
+  ]
+}
